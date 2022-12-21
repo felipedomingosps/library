@@ -13,3 +13,28 @@ function Book (title, author, pages, read) {
 function addBookToLibrary (title, author, pages, read) {
     library.push(new Book(title, author, pages, read))
 }
+
+function addInitialBooks(){
+    const books = [
+        {
+            title:'The Hobbit',
+            author: 'J. R. R. Tolkien',
+            pages: 310,
+            read: false
+        },
+        {
+            title:'A Game of Thrones',
+            author: 'George R. R. Martin',
+            pages: 694,
+            read: true
+        },
+        {
+            title: 'The Catcher in the Rye',
+            author: 'J. D. Salinger',
+            pages: 234,
+            read: true
+        }
+    ]
+
+    books.forEach(book => addBookToLibrary(book.title, book.author, book.pages, book.read))
+    }
