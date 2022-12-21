@@ -4,7 +4,7 @@ function Book (title, author, pages, read) {
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.read = read ? "read" : "not read yet",
+    this.read = read ? "Read" : "Not read yet",
     this.info = function() {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
     }
@@ -37,4 +37,27 @@ function addInitialBooks(){
     ]
 
     books.forEach(book => addBookToLibrary(book.title, book.author, book.pages, book.read))
-    }
+}
+
+addInitialBooks()
+
+function createBookCard(book, index){
+    return `<article class="library__book" data-index="${index}">
+    <h2 class="book__title">${book.title}</h2>
+    <p class="book__author">${book.author}</p>
+    <p class="book__pages">${book.pages}</p>
+    <p class="book__read">${book.read}</p>
+    <button class="book__remove-button"></button>
+</article>`
+}
+
+function displayBookCard(bookCard) {
+    const sectionLibrary = document.querySelector('.library')
+    sectionLibrary.innerHTML += bookCard
+}
+
+function displayAllBooks() {
+    library.forEach((book, index)=> {
+        displayBookCard(createBookCard(book,index))
+    })
+}
