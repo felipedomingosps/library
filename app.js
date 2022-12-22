@@ -55,7 +55,23 @@ function displayBookCard (bookCard) {
 
 function displayAllBooks () {
     library.forEach((book, index)=> {
-        displayBookCard(createBookCard(book,index))
+        displayBookCard(createBookCard(book,index));
+    });
+}
+
+function configureAllDeleteButtons () {
+    const allDeleteButtons = document.querySelectorAll('.book__remove-button');
+
+    function deleteCard (card) {
+        library.splice(card.dataset.index, 1); /* This isn't going to work in the long run because the way indexes are being created, better if we use ids */
+        card.remove();
+    }
+
+
+    allDeleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            deleteCard(button.parentElement.parentElement)
+        });
     });
 }
 
@@ -67,4 +83,4 @@ addInitialBooks();
 
 displayAllBooks();
 
-
+configureAllDeleteButtons();
