@@ -4,9 +4,16 @@ function Book (title, author, pages, read) {
     this.author = author,
     this.pages = pages,
     this.read = read ? "Read" : "Not read yet",
+    this.id = getNextId(),
     this.info = function() {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
     }
+}
+
+function getNextId () {
+    const nextId = greatestId + 1;
+    greatestId = nextId;
+    return nextId
 }
 
 function addBookToLibrary (title, author, pages, read) {
@@ -38,8 +45,8 @@ function addInitialBooks (){
     books.forEach(book => addBookToLibrary(book.title, book.author, book.pages, book.read));
 }
 
-function createBookCard (book, index){
-    return `<article class="library__book" data-index="${index}">
+function createBookCard (book){
+    return `<article class="library__book" data-id="${book.id}">
     <h2 class="book__title">${book.title}</h2>
     <p class="book__author">${book.author}</p>
     <p class="book__pages">${book.pages}</p>
@@ -54,8 +61,8 @@ function displayBookCard (bookCard) {
 }
 
 function displayAllBooks () {
-    library.forEach((book, index)=> {
-        displayBookCard(createBookCard(book,index));
+    library.forEach((book)=> {
+        displayBookCard(createBookCard(book));
     });
 }
 
@@ -63,10 +70,15 @@ function configureAllDeleteButtons () {
     const allDeleteButtons = document.querySelectorAll('.book__remove-button');
 
     function deleteCard (card) {
-        library.splice(card.dataset.index, 1); /* This isn't going to work in the long run because the way indexes are being created, better if we use ids */
+        const filteredBook = library.filter((book) => {
+            book.id === card.dataset.id
+        });
+
+        const bookIndex = library.findIndex(book => book === filteredBook );
+
+        library.splice(bookIndex, 1); /* This isn't going to work in the long run because the way indexes are being created, better if we use ids */
         card.remove();
     }
-
 
     allDeleteButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -77,6 +89,7 @@ function configureAllDeleteButtons () {
 
 /* APP */
 
+let greatestId = 0;
 const library = [];
 
 addInitialBooks();
