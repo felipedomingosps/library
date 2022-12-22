@@ -49,7 +49,7 @@ function createBookCard (book, index){
 }
 
 function displayBookCard (bookCard) {
-    const sectionLibrary = document.querySelector('.library');
+    const sectionLibrary = document.querySelector('#library');
     sectionLibrary.innerHTML += bookCard;
 }
 
