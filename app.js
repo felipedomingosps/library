@@ -66,19 +66,19 @@ function displayAllBooks () {
     });
 }
 
+function deleteCard (card) {
+    const filteredBook = library.filter((book) => {
+        book.id === card.dataset.id
+    });
+
+    const bookIndex = library.findIndex(book => book === filteredBook );
+
+    library.splice(bookIndex, 1);
+    card.remove();
+}
+
 function configureAllDeleteButtons () {
     const allDeletedButtons = document.querySelectorAll('.book__remove-button');
-
-    function deleteCard (card) {
-        const filteredBook = library.filter((book) => {
-            book.id === card.dataset.id
-        });
-
-        const bookIndex = library.findIndex(book => book === filteredBook );
-
-        library.splice(bookIndex, 1);
-        card.remove();
-    }
 
     allDeletedButtons.forEach(button => {
         button.addEventListener('click', () => {
