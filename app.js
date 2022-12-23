@@ -67,7 +67,7 @@ function displayAllBooks () {
 }
 
 function configureAllDeleteButtons () {
-    const allDeleteButtons = document.querySelectorAll('.book__remove-button');
+    const allDeletedButtons = document.querySelectorAll('.book__remove-button');
 
     function deleteCard (card) {
         const filteredBook = library.filter((book) => {
@@ -76,11 +76,11 @@ function configureAllDeleteButtons () {
 
         const bookIndex = library.findIndex(book => book === filteredBook );
 
-        library.splice(bookIndex, 1); /* This isn't going to work in the long run because the way indexes are being created, better if we use ids */
+        library.splice(bookIndex, 1);
         card.remove();
     }
 
-    allDeleteButtons.forEach(button => {
+    allDeletedButtons.forEach(button => {
         button.addEventListener('click', () => {
             deleteCard(button.parentElement.parentElement)
         });
