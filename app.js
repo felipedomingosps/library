@@ -20,9 +20,6 @@ function addBookToLibrary (title, author, pages, read) {
     library.push(new Book(title, author, pages, read));
 }
 
-
-
-
 function addInitialBooks (){
     const books = [
         {
@@ -84,7 +81,31 @@ function deleteCard (card) {
 
 function deleteParentElement (element) {
     deleteCard(element.parentElement);
-} 
+}
+
+function configureForm() {
+    const form = document.querySelector('#form');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        function resetForm() {
+            event.target[1].value = "";
+            event.target[2].value = "";
+            event.target[3].value = 0;
+            event.target[4].checked = false;
+        }
+
+        let title = event.target[1].value;
+        let author = event.target[2].value;
+        let pages = event.target[3].value;
+        let read = event.target[4].checked;
+
+        addBookToLibrary(title, author, pages, read);
+        displayBookCard(createBookCard(library[library.length - 1]));
+
+        resetForm();
+    })
+}
 
 /* APP */
 
@@ -92,3 +113,4 @@ let greatestId = 0;
 const library = [];
 
 addInitialBooks();
+configureForm();
