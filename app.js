@@ -58,7 +58,10 @@ function createBookCard (book){
     <h2 class="book__title">${book.title}</h2>
     <p class="book__author">${book.author}</p>
     <p class="book__pages">${book.pages}</p>
-    <div class="book__read><p class="read__status">${book.read}</p><input type="range" min="1" max="2" value="${book.read === "Read" ? 2 : 1}" class="read__toggle"></div>
+    <div class="book__read">
+        <p class="read__status">${book.read}</p>
+        <input type="range" min="1" max="2" value="${book.read === "Read" ? 2 : 1}" onchange="changeReadStatus(this)" class="read__toggle">
+    </div>
     <button class="book__remove-button" onclick="deleteParentElement(this)" >X</button>
 </article>`;
 }
@@ -79,8 +82,8 @@ function deleteCard (card) {
         card.remove();
 }
 
-function deleteParentElement (element) {
-    deleteCard(element.parentElement);
+function deleteParentElement (buttonInput) {
+    deleteCard(buttonInput.parentElement);
 }
 
 function configureForm() {
@@ -105,6 +108,23 @@ function configureForm() {
 
         resetForm();
     })
+}
+
+function changeReadStatus(rangeInput) {
+    const newValue = Number(rangeInput.value);
+    const parentElementId = Number(rangeInput.parentElement.parentElement.dataset.id);
+    const bookIndex = library.findIndex(book => book.id === parentElementId)
+                      library.findIndex(book => book.id === 3);
+
+    function changeStatusOnLibraryObject() {
+        library[bookIndex].read = newValue === 2 ? "Read" : "Not read yet";
+    }
+    function changeStatusOnBookCard() {
+        rangeInput.parentElement.children[0].innerHTML = newValue === 2 ? "Read" : "Not read yet";
+    }
+
+    changeStatusOnLibraryObject();
+    changeStatusOnBookCard();
 }
 
 /* APP */
