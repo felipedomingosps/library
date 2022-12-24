@@ -20,6 +20,9 @@ function addBookToLibrary (title, author, pages, read) {
     library.push(new Book(title, author, pages, read));
 }
 
+
+
+
 function addInitialBooks (){
     const books = [
         {
@@ -42,7 +45,15 @@ function addInitialBooks (){
         }
     ];
 
+    function displayAllBooks () {
+        library.forEach((book)=> {
+            displayBookCard(createBookCard(book));
+        });
+    };
+
     books.forEach(book => addBookToLibrary(book.title, book.author, book.pages, book.read));
+
+    displayAllBooks();
 }
 
 function createBookCard (book){
@@ -50,8 +61,8 @@ function createBookCard (book){
     <h2 class="book__title">${book.title}</h2>
     <p class="book__author">${book.author}</p>
     <p class="book__pages">${book.pages}</p>
-    <div class="book__read><p class="read__status">${book.read}</p><input type="range" min="1" max="2" value="${book.read === "Read" ? 2 : 1}" class="read__toggle">
-    <button class="book__remove-button">X</button>
+    <div class="book__read><p class="read__status">${book.read}</p><input type="range" min="1" max="2" value="${book.read === "Read" ? 2 : 1}" class="read__toggle"></div>
+    <button class="book__remove-button" onclick="deleteParentElement(this)" >X</button>
 </article>`;
 }
 
@@ -60,32 +71,20 @@ function displayBookCard (bookCard) {
     sectionLibrary.innerHTML += bookCard;
 }
 
-function displayAllBooks () {
-    library.forEach((book)=> {
-        displayBookCard(createBookCard(book));
-    });
-}
-
 function deleteCard (card) {
-    const filteredBook = library.filter((book) => {
-        book.id === card.dataset.id
-    });
-
-    const bookIndex = library.findIndex(book => book === filteredBook );
-
-    library.splice(bookIndex, 1);
-    card.remove();
-}
-
-function configureAllDeleteButtons () {
-    const allDeletedButtons = document.querySelectorAll('.book__remove-button');
-
-    allDeletedButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            deleteCard(button.parentElement.parentElement)
+        const filteredBook = library.filter((book) => {
+            book.id === card.dataset.id
         });
-    });
+
+        const bookIndex = library.findIndex(book => book === filteredBook );
+
+        library.splice(bookIndex, 1);
+        card.remove();
 }
+
+function deleteParentElement (element) {
+    deleteCard(element.parentElement);
+} 
 
 /* APP */
 
@@ -93,7 +92,3 @@ let greatestId = 0;
 const library = [];
 
 addInitialBooks();
-
-displayAllBooks();
-
-configureAllDeleteButtons();
