@@ -1,0 +1,83 @@
+/* BODY */
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* HEADER */
+
+header {
+    padding: .5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* ASIDE AND MAIN */
+
+.aside-and-main-container {
+    display: flex;
+    gap: .5rem;
+}
+
+/* ASIDE */
+
+.aside__container {
+    display: flex;
+    gap: .3rem;
+}
+
+.aside__always-on-display{
+    padding: .5rem;
+}
+
+.always-on-display__symbol {
+    font-size: 3rem;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 2rem;
+}
+
+.aside__add-book {
+    padding: .5rem;
+}
+
+/* ASIDE - FORM */
+
+.form__fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.fieldset__title {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+}
+
+.p__container {
+    display: flex;
+    justify-content: space-between;
+    gap: .5rem;
+}
+
+.p__container--read {
+    justify-content: flex-start;
+}
+
+.fieldset__button {
+    border-radius: 25px;
+    border: none;
+    width: 60%;
+    align-self: center;
+    margin-top: 1.5rem;
+    padding: .5rem;
+}
