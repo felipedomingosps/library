@@ -81,3 +81,45 @@ h1 {
     margin-top: 1.5rem;
     padding: .5rem;
 }
+
+/* MAIN */
+
+main {
+    flex-grow: 1;
+}
+
+.library {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: .5rem;
+}
+
+.library__book {
+    border: solid black 1px;
+    border-radius: 25px;
+    padding: 2rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    
+    text-align: right;
+}
+
+
+.book__title {
+    font-size: 1.3rem;
+}
+
+.book__read {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.read__toggle {
+    max-width: 50px;
+}
+
+.book__remove-button{
+    align-self: flex-end;
+}

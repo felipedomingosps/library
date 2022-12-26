@@ -57,7 +57,7 @@ function createBookCard (book){
     return `<article class="library__book" data-id="${book.id}">
     <h2 class="book__title">${book.title}</h2>
     <p class="book__author">${book.author}</p>
-    <p class="book__pages">${book.pages}</p>
+    <p class="book__pages">${book.pages} Pages</p>
     <div class="book__read">
         <p class="read__status">${book.read}</p>
         <input type="range" min="1" max="2" value="${book.read === "Read" ? 2 : 1}" onchange="changeReadStatus(this)" class="read__toggle">
