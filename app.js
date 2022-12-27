@@ -2,7 +2,7 @@
 function Book (title, author, pages, read) {
     this.title = title,
     this.author = author,
-    this.pages = pages,
+    this.pages = Number(pages),
     this.read = read ? "Read" : "Not read yet",
     this.id = getNextId(),
     this.info = function() {
@@ -60,7 +60,7 @@ function createBookCard (book){
     <p class="book__pages">${book.pages} Pages</p>
     <div class="book__read">
         <p class="read__status">${book.read}</p>
-        <input type="range" min="1" max="2" value="${book.read === "Read" ? 2 : 1}" onchange="changeReadStatus(this)" class="read__toggle">
+        <input type="range" min="1" max="2" value="${book.read === 'Read' ? 2 : 1}" onchange="changeReadStatus(this)" class="read__toggle">
     </div>
     <button class="book__remove-button" onclick="deleteParentElement(this)" >X</button>
 </article>`;
@@ -72,11 +72,7 @@ function displayBookCard (bookCard) {
 }
 
 function deleteCard (card) {
-        const filteredBook = library.filter((book) => {
-            book.id === card.dataset.id
-        });
-
-        const bookIndex = library.findIndex(book => book === filteredBook );
+        const bookIndex = library.findIndex(book => book.id == Number(card.dataset.id) );
 
         library.splice(bookIndex, 1);
         card.remove();
