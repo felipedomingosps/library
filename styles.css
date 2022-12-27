@@ -1,5 +1,9 @@
 /* BODY */
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 .container {
     max-width: 1600px;
     margin: 0 auto;
@@ -50,6 +54,10 @@ h1 {
     padding: .5rem;
 }
 
+.hide {
+    display: none;
+}
+
 /* ASIDE - FORM */
 
 .form__fieldset {
@@ -97,10 +105,11 @@ main {
 .library__book {
     border: solid black 1px;
     border-radius: 25px;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
 
     display: flex;
     flex-direction: column;
+    gap: .3rem;
     
     text-align: right;
 }
@@ -122,4 +131,7 @@ main {
 
 .book__remove-button{
     align-self: flex-end;
+    font-weight: 900;
+    margin-top: 1rem;
+    border-radius: 5px;
 }

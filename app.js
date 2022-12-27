@@ -123,6 +123,22 @@ function changeReadStatus(rangeInput) {
     changeStatusOnBookCard();
 }
 
+function configureAsideDisplay() {
+    const symbol = document.querySelector('[data-open]');
+
+    symbol.addEventListener('click', () => {
+        const form = document.querySelector('#form-container');
+
+        if (symbol.dataset.open === "0" ) {
+            form.classList.remove('hide');
+            symbol.dataset.open = "1";
+        } else {
+            form.classList.add('hide');
+            symbol.dataset.open = "0";
+        }
+    })
+}
+
 /* APP */
 
 let greatestId = 0;
@@ -130,3 +146,4 @@ const library = [];
 
 addInitialBooks();
 configureForm();
+configureAsideDisplay();
