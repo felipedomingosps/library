@@ -129,6 +129,8 @@ function configureAsideDisplay() {
     symbol.addEventListener('click', () => {
         const form = document.querySelector('#form-container');
 
+        symbol.classList.remove("not-clicked");
+
         if (symbol.dataset.open === "0" ) {
             form.classList.remove('hide');
             symbol.dataset.open = "1";

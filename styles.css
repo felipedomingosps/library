@@ -48,6 +48,7 @@ h1 {
     font-weight: 600;
     cursor: pointer;
     line-height: 2rem;
+    transition: 400ms;
 }
 
 .aside__add-book {
@@ -57,6 +58,21 @@ h1 {
 .hide {
     display: none;
 }
+
+@keyframes pulsing {
+    0% {scale: 1;}
+    50% {scale: 1.1;}
+    100% {scale: 1;}
+}
+
+.not-clicked {
+    animation: pulsing;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    
+}
+
+
 
 /* ASIDE - FORM */
 
